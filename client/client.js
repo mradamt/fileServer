@@ -37,7 +37,18 @@ const userInput = (conn) => {
     // userInput(connect())
     // process.exit()
   });
+}
 
+const writeContentToFile = (path, content) => {
+  fs.writeFile(path, content, (err, written, string) => {
+    if (err) {
+    console.log("ERROR: File write failed. See error message below.")
+    throw err;
+    }
+    fs.stat(path, (err, stats) => {
+      console.log(`Downloaded and saved ${stats.size} bytes to ${path}`)
+    })
+  })
 }
 
 
