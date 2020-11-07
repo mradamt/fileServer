@@ -17,9 +17,11 @@ const launchServer = function() {
     client.setEncoding('utf-8');
     client.on('data', (data) => {
       // Client has sent a filename to look for
-      client.write('you sent me:::' + data)
       console.log('Message from client:::', data)
+      client.write('you sent me:::' + data)
+
     })
+
   });
   
   server.listen(3000, () => {
