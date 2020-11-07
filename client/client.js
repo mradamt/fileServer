@@ -1,18 +1,17 @@
 const net = require('net');
 const readline = require('readline');
-let connection;
 
 const connect = function() {
-  const conn = net.createConnection({ 
+  const conn = net.createConnection({
     host: 'localhost', // change to IP address of computer or ngrok host if tunneling
     port: 3000 // or change to the ngrok port if tunneling
   });
   // interpret data as text
-  conn.setEncoding('utf8'); 
+  conn.setEncoding('utf8');
   // On connect:
   conn.on('connect', () => {
-    console.log('Successful connection')
-    userInput(x => conn.write(x))
+    console.log('Successful connection');
+    userInput(x => conn.write(x));
   });
   // When data received:
   conn.on('data', (data) => {
@@ -20,7 +19,7 @@ const connect = function() {
   });
 
   return conn;
-}
+};
 
 
 const userInput = (callback) => {
@@ -32,7 +31,7 @@ const userInput = (callback) => {
     rl.close();
     return callback(answer);
   });
-}
+};
 
 /*
 // TODO: implement writeToFile?
@@ -49,4 +48,4 @@ const writeContentToFile = (path, content) => {
 }
 */
 
-connect()
+connect();

@@ -18,24 +18,24 @@ const launchServer = function() {
     client.on('data', (path) => {
       // Client has sent a filename to look for
       
-      readFileContents(path, 'utf8', x => client.write(x)) 
-    })
+      readFileContents(path, 'utf8', x => client.write(x));
+    });
   });
   
   server.listen(3000, () => {
     console.log('Server listening on port 3000!');
   });
-}
+};
 
 // const encoding = 'utf8'
 const readFileContents = (path, encoding, callback) => {
   fs.readFile(path, encoding, (err, data) => {
     if (err) throw err;
-    return callback(data)
-  })
-}
+    return callback(data);
+  });
+};
 
 
-launchServer()
+launchServer();
   
   
