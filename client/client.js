@@ -22,7 +22,8 @@ const connect = function() {
 }
 
 
-const userInput = (connection) => {
+const userInput = (conn) => {
+  connection = conn;
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -32,12 +33,14 @@ const userInput = (connection) => {
     // console.log(`Your answer: ${answer}`);
     connection.write(answer);
     rl.close();
-    process.exit()
+    // userInput(connect())
+    // process.exit()
   });
+
 }
 
+
 userInput(connect())
-// connect()
 
 module.exports = { connect }
 
