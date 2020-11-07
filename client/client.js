@@ -31,7 +31,8 @@ const userInput = (conn) => {
   
   rl.question('Filename:::', (answer) => {
     // console.log(`Your answer: ${answer}`);
-    connection.write(answer);
+    // connection.write(answer);
+    connection.write('findMe.txt');
     rl.close();
     // userInput(connect())
     // process.exit()
