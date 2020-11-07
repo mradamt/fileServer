@@ -1,4 +1,4 @@
-
+const fs = require('fs');
 
 /*
   Build a file server and client where:
@@ -15,10 +15,14 @@ const launchServer = function() {
     // client.write('Hello there!');
     
     client.setEncoding('utf-8');
-    client.on('data', (data) => {
+    client.on('data', (path) => {
       // Client has sent a filename to look for
-      console.log('Message from client:::', data)
-      client.write('you sent me:::' + data)
+      console.log('File path:::', path)
+      
+      console.log(":::::::::::::::::::::::::::::", path)
+      readFileContents(path, 'utf8', x => client.write(x)) 
+      // console.log('thing:', thing)
+      // client.write(readFileContents(path));
 
     })
 
@@ -28,16 +32,19 @@ const launchServer = function() {
     console.log('Server listening on port 3000!');
   });
 
-  // server.on('data', (data) => {
 
-  // })
 }
 
-// const readFile = function(path) {
+// const encoding = 'utf8'
+const readFileContents = (path, encoding, callback) => {
+  fs.readFile(path, encoding, (err, data) => {
+    if (err) throw err;
+    return callback(data)
+  })
 
-//   return "file contents placeholder"
-// }
+}
 
+// readFileContents('findMe.txt')
 
 launchServer()
   
