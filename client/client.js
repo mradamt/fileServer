@@ -12,6 +12,7 @@ const connect = function() {
   // On connect:
   conn.on('connect', () => {
     console.log('Successful connection')
+    userInput(x => conn.write(x))
   });
   // When data received:
   conn.on('data', (data) => {
@@ -22,23 +23,19 @@ const connect = function() {
 }
 
 
-const userInput = (conn) => {
-  connection = conn;
+const userInput = (callback) => {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
-  
   rl.question('Filename:::', (answer) => {
-    // console.log(`Your answer: ${answer}`);
-    // connection.write(answer);
-    connection.write('findMe.txt');
     rl.close();
-    // userInput(connect())
-    // process.exit()
+    return callback(answer);
   });
 }
 
+/*
+// TODO: implement writeToFile?
 const writeContentToFile = (path, content) => {
   fs.writeFile(path, content, (err, written, string) => {
     if (err) {
@@ -50,11 +47,6 @@ const writeContentToFile = (path, content) => {
     })
   })
 }
+*/
 
-
-userInput(connect())
-
-module.exports = { connect }
-
-
-
+connect()

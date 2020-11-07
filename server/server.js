@@ -17,22 +17,14 @@ const launchServer = function() {
     client.setEncoding('utf-8');
     client.on('data', (path) => {
       // Client has sent a filename to look for
-      console.log('File path:::', path)
       
-      console.log(":::::::::::::::::::::::::::::", path)
       readFileContents(path, 'utf8', x => client.write(x)) 
-      // console.log('thing:', thing)
-      // client.write(readFileContents(path));
-
     })
-
   });
   
   server.listen(3000, () => {
     console.log('Server listening on port 3000!');
   });
-
-
 }
 
 // const encoding = 'utf8'
@@ -41,10 +33,8 @@ const readFileContents = (path, encoding, callback) => {
     if (err) throw err;
     return callback(data)
   })
-
 }
 
-// readFileContents('findMe.txt')
 
 launchServer()
   
