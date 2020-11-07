@@ -30,7 +30,9 @@ const launchServer = function() {
 // const encoding = 'utf8'
 const readFileContents = (path, encoding, callback) => {
   fs.readFile(path, encoding, (err, data) => {
-    if (err) throw err;
+    if (err) {
+      return callback(String(err))
+    };
     return callback(data);
   });
 };
